@@ -1,12 +1,21 @@
-import express, {Request, Response} from 'express' 
+import express from 'express' 
+import { routes } from "./routes/routes"
 
-const PORT = 3333
+const PORT = process.env.PORT || 3333; 
+
 
 const server = express()
 
+server.use(routes)
 
-server.get('/', function (request: Request, response: Response) {
-  response.send('Server is run on port ' + PORT)
-})
+const startServer = () => {
+  try {
+    server.listen(PORT)
+    console.log("Server is running on PORT: ",  PORT)
 
-server.listen(PORT)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+startServer()

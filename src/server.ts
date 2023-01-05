@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express' 
 
-const PORT = 3000
+const PORT = 3333
 
 const server = express()
 

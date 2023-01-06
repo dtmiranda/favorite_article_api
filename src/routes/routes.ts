@@ -1,9 +1,12 @@
 import express, { Request, Response} from 'express'
+import ArticleController from '../controllers/ArticleController'
+
 
 export const routes = express.Router()
 
-routes.get('/', function (request: Request, response: Response) {
-  response.send("Welcome to favorite article")
-})
+routes.get('/articles', ArticleController.getAllArticles)
+routes.post('/articles', ArticleController.storeArticle)
+routes.put("/articles/:id", ArticleController.updateArticle)
+routes.delete("/articles/:id", ArticleController.deleteArticle)
 
 

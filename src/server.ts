@@ -1,6 +1,7 @@
 import express from 'express' 
 import { ConnectDb } from './database/connect';
 import { routes } from "./routes/routes"
+const cors = require('cors')
 
 
 
@@ -8,6 +9,8 @@ const PORT = process.env.PORT || 3333;
 
 
 const server = express()
+
+server.use(cors())
 
 server.use(express.json())
 

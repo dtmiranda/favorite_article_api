@@ -7,6 +7,8 @@ export  const ConnectDb = (DB_URL: string) =>{
 
     useNewUrlParser: true,
     useUnifiedTopology: true,
+
+    
     
 
   }).then(() => {

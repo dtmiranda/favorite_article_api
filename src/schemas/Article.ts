@@ -3,8 +3,11 @@ const { Schema } = mongoose;
 
 
 const ArticleSchema = new Schema({
-  url: String,
   lable: String,
+  summary: String,
+  url: String,
+  author: String,
+
 }, {
   timestamps: true
 })

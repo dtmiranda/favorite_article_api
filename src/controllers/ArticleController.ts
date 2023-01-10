@@ -8,7 +8,8 @@ class ArticleController {
   public async getAllArticles (request: Request, response: Response) {
     try {
       const article = await Article.find()
-      response.status(200).json({article})
+      
+      response.status(200).json(article)
 
       
     } catch (error) {

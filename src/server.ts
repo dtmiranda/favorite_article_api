@@ -20,6 +20,8 @@ const startServer = () => {
   try {
     server.listen(PORT)
     console.log("Server is running on PORT: ",  PORT)
+    
+    console.log("Waiting...")
 
     ConnectDb("mongodb+srv://sam:1234@cluster0.m0zii1h.mongodb.net/article_db")
 

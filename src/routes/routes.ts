@@ -5,6 +5,7 @@ import ArticleController from '../controllers/ArticleController'
 export const routes = express.Router()
 
 routes.get('/articles', ArticleController.getAllArticles)
+routes.get('/articles/:id', ArticleController.findOne)
 routes.post('/articles', ArticleController.storeArticle)
 routes.put("/articles/:id", ArticleController.updateArticle)
 routes.delete("/articles/:id", ArticleController.deleteArticle)

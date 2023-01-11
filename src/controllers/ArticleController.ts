@@ -39,6 +39,33 @@ class ArticleController {
 
   }
 
+  public async findOne (request: Request, response: Response) {
+    try {
+      const articleId = request.params.id;
+      const article = await Article.findById(articleId, request.body)
+
+      if(!article){
+        return response.status(404).json({message:"This article does not exists!"})
+      }
+
+
+
+      response.status(200).json({
+        article,
+        message: "Article link updated successfully",
+
+      });
+      
+    } catch (error) {
+      response.status(500).json({
+        message: "Error storing link ",
+        error,
+      });
+      
+    }
+
+  }
+
   public async updateArticle (request: Request, response: Response) {
     try {
       const articleId = request.params.id;

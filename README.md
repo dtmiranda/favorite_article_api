@@ -24,7 +24,7 @@ Essentially this is a CRUD to manage your favorite tech article using this field
 1. Make a clone of this repository;
 2. Enter the `cd favorite_article_api` folder
 3. Run `yarn` or `npm install`
-4. Run `yarn run dev` or `npm rum dev` to run the application
+4. Run `yarn run dev` or `npm run dev` to run the application
 5. Access URL `http://localhost:3333`
 
 

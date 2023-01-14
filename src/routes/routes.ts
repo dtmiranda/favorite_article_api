@@ -1,5 +1,5 @@
 import express, { Request, Response} from 'express'
-import ArticleController from '../controllers/ArticleController'
+import ArticleController from '../controllers/BlogController'
 
 
 export const routes = express.Router()

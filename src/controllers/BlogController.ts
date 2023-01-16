@@ -12,9 +12,9 @@ const Blog = require("../schemas/Blog")
 puppeteer.use(stealthPlugin())
 
 
-class ArticleController {
+class BlogController {
 
-  public async getAllArticles (request: Request, response: Response) {
+  public async getAllBlogs (_request: Request, response: Response) {
     try {
       const article = await Blog.find()
       
@@ -31,7 +31,7 @@ class ArticleController {
 
 
 
-  public async storeArticle (request: Request, response: Response) {
+  public async storeBlog (request: Request, response: Response) {
 
     
     try {
@@ -129,6 +129,8 @@ class ArticleController {
   }
 
 
+
+
   public async findOne (request: Request, response: Response) {
     try {
       const articleId = request.params.id;
@@ -156,20 +158,20 @@ class ArticleController {
 
   }
 
-  public async updateArticle (request: Request, response: Response) {
+  public async updateBlog (request: Request, response: Response) {
     try {
       const blogId = request.params.id;
       const blog = await Blog.findByIdAndUpdate(blogId, request.body)
 
       if(!blog){
-        return response.status(404).json({message:"This article does not exists!"})
+        return response.status(404).json({message:"This blog does not exists!"})
       }
 
 
 
       response.status(200).json({
         blog,
-        message: "Article link updated successfully",
+        message: "Blog updated successfully",
 
       });
       
@@ -183,20 +185,53 @@ class ArticleController {
 
   }
 
+  public async listArticles(request: Request, response: Response){
 
 
-  public async deleteArticle (request: Request, response: Response) {
     try {
-      const articleId = request.params.id;
 
-      const article = await Blog.findByIdAndDelete(articleId)
+      const blogId = request.params.id;
 
-      if(!article){
-        return response.status(404).json({message:"This article does not exists!"})
+      const articles = await Blog.findOne({_id: blogId})
+                              
+      console.log("Articles: ", request.body.articles)
+
+
+      if(!articles){
+        return response.status(404).json({message:"This Blog does not have articles!"})
+      }
+
+
+
+      response.status(200).json({
+        articles,
+        message: "Article listed successfully",
+
+      });
+      
+    } catch (error) {
+      response.status(500).json({
+        message: "Error listing articles ",
+        error,
+      });
+      
+    }
+  }
+
+
+
+  public async deleteBlog (request: Request, response: Response) {
+    try {
+      const blogId = request.params.id;
+
+      const blog = await Blog.findByIdAndDelete(blogId)
+
+      if(!blog){
+        return response.status(404).json({message:"This blog does not exists!"})
       }
 
       response.status(201).json({
-        message: "Article link deleted successfully",
+        message: "Blog deleted successfully",
       });
       
     } catch (error) {
@@ -210,7 +245,7 @@ class ArticleController {
   }
 }
 
-export default new ArticleController()
+export default new BlogController()
 
 
 

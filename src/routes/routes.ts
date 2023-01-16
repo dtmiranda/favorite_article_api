@@ -1,13 +1,13 @@
 import express, { Request, Response} from 'express'
-import ArticleController from '../controllers/BlogController'
+import BlogController from '../controllers/BlogController'
 
 
 export const routes = express.Router()
 
-routes.get('/articles', ArticleController.getAllArticles)
-routes.get('/articles/:id', ArticleController.findOne)
-routes.post('/articles', ArticleController.storeArticle)
-routes.put("/articles/:id", ArticleController.updateArticle)
-routes.delete("/articles/:id", ArticleController.deleteArticle)
+routes.get('/blogs', BlogController.getAllBlogs)
+routes.get('/blog/:id', BlogController.listArticles)
+routes.post('/blogs', BlogController.storeBlog)
+routes.put("/blog/:id", BlogController.updateBlog)
+routes.delete("/blog/:id", BlogController.deleteBlog)
 
 

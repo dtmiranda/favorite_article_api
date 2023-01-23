@@ -16,9 +16,9 @@ class BlogController {
 
   public async getAllBlogs (_request: Request, response: Response) {
     try {
-      const article = await Blog.find()
+      const blogs = await Blog.find()
       
-      response.status(200).json(article)
+      response.status(200).json(blogs)
 
       
     } catch (error) {
@@ -68,8 +68,9 @@ class BlogController {
 
         const data = articleCard.map(
           (articles: any) => ({
+
             
-            cover: articles.querySelector(".css-1082qq3").getAttribute("src"),
+            cover:articles.querySelector("a span img").getAttribute("src"),
             articleUrl:articles.querySelector("h1 a").getAttribute("href"),
             title: articles.querySelector("h1 a").innerText,
             author: articles.querySelector(".css-1gl67p8 a").innerText,
@@ -186,28 +187,26 @@ class BlogController {
   }
 
   public async listArticles(request: Request, response: Response){
-
+    var articles:[]
 
     try {
 
       const blogId = request.params.id;
 
-      const articles = await Blog.findOne({_id: blogId})
+      const blog = await Blog.findOne({_id: blogId})
+
+      articles = blog.articles
                               
-      console.log("Articles: ", request.body.articles)
+      //console.log("Articles: ", request.body)
 
 
       if(!articles){
         return response.status(404).json({message:"This Blog does not have articles!"})
       }
+ 
 
 
-
-      response.status(200).json({
-        articles,
-        message: "Article listed successfully",
-
-      });
+      response.status(200).json(articles);
       
     } catch (error) {
       response.status(500).json({

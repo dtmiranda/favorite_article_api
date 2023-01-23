@@ -7,7 +7,7 @@ const BlogSchema = new Schema({
   blogUrl: String,
   articles:[{
     cover: String,
-    articleURL: String,
+    articleUrl: String,
     title: String,
     author: String,
   }]
